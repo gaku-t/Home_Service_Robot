@@ -32,8 +32,8 @@ int main(int argc, char** argv){
   goal.target_pose.header.stamp = ros::Time::now();
 
   // Define a position and orientation for the robot to reach
-  goal.target_pose.pose.position.x = 4.0;
-  goal.target_pose.pose.position.y = 6.0;
+  goal.target_pose.pose.position.x = 1.0;
+  goal.target_pose.pose.position.y = -1.5;
   goal.target_pose.pose.orientation.w = 1.0;
 
   while (goal_pub.getNumSubscribers() < 1 &&
@@ -54,8 +54,8 @@ int main(int argc, char** argv){
   ac.sendGoal(goal);
 
   geometry_msgs::Pose msg;
-  msg.position.x = 4.0;
-  msg.position.y = 6.0;
+  msg.position.x = 1.0;
+  msg.position.y = -1.5;
   msg.position.z = 0.0;
   msg.orientation.x = 0.0;
   msg.orientation.y = 0.0;
@@ -91,8 +91,8 @@ int main(int argc, char** argv){
   drop_goal.target_pose.header.stamp = ros::Time::now();
 
   // Define a position and orientation for the robot to reach
-  drop_goal.target_pose.pose.position.x = -4.0;
-  drop_goal.target_pose.pose.position.y = 6.0;
+  drop_goal.target_pose.pose.position.x = -0.5;
+  drop_goal.target_pose.pose.position.y = 0.5;
   drop_goal.target_pose.pose.orientation.w = -0.5;
 
    // Send the goal position and orientation for the robot to reach
@@ -100,8 +100,8 @@ int main(int argc, char** argv){
   ac.sendGoal(drop_goal);
 
   geometry_msgs::Pose drop_msg;
-  drop_msg.position.x = -4.0;
-  drop_msg.position.y = 6.0;
+  drop_msg.position.x = -0.5;
+  drop_msg.position.y = 0.5;
   drop_msg.position.z = 0.0;
   drop_msg.orientation.x = 0.0;
   drop_msg.orientation.y = 0.0;
