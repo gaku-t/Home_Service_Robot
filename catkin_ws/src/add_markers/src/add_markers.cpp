@@ -78,10 +78,10 @@ AddMarkers::AddMarkers() {
   //marker.pose.position.x = 0.0;
   //marker.pose.position.y = 0.0;
   marker.pose.position.z = 0;
-  marker.pose.orientation.x = 1.0;
+  marker.pose.orientation.x = 0.0;
   marker.pose.orientation.y = 0.0;
   marker.pose.orientation.z = 0.0;
-  marker.pose.orientation.w = 0.0;
+  // marker.pose.orientation.w = 0.0;
 
 
   // Set the scale of the marker -- 1x1x1 here means 1m on a side
@@ -213,11 +213,13 @@ void AddMarkers::update() {
             goal_order = GoalPickup;
             goal.position.x = 1.0;
             goal.position.y = -1.5;
+            goal.orientation.w = 1;
           }
 
           // Set the pose of the marker.  This is a full 6DOF pose relative to the frame/time specified in the header
           marker.pose.position.x = goal.position.x;
           marker.pose.position.y = goal.position.y;
+          marker.pose.orientation.w = goal.orientation.w;
           newstatus = MarkerGoPick;
           if (DEBUG) ROS_INFO("Status CHANGE %d.: newstatus:%d from status:%d", logc, newstatus, status);
           status = newstatus;
@@ -227,6 +229,7 @@ void AddMarkers::update() {
           // Set the pose of the marker.  This is a full 6DOF pose relative to the frame/time specified in the header
           marker.pose.position.x =  goal.position.x;
           marker.pose.position.y = goal.position.y;
+          marker.pose.orientation.w = goal.orientation.w;
           newstatus = MarkerDrop;
           ROS_INFO("Drop the object at the drop off point");
           if (DEBUG) ROS_INFO("Status CHANGE %d.: newstatus:%d from status:%d", logc, newstatus, status);
@@ -243,6 +246,7 @@ void AddMarkers::update() {
           goal_order = GoalDrop;
           goal.position.x = -0.5;
           goal.position.y = 0.5;
+          goal.orientation.w = 1;
           ROS_INFO("Carry the object to the drop off point");
         }
       }

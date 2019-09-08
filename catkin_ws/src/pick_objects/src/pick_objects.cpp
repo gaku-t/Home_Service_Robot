@@ -34,6 +34,7 @@ int main(int argc, char** argv){
   // Define a position for the robot to reach
   goal.target_pose.pose.position.x = 1.0;
   goal.target_pose.pose.position.y = -1.5;
+  goal.target_pose.pose.orientation.w = 1.0;
 
   while (goal_pub.getNumSubscribers() < 1 &&
     (wait_goal_sub <= max_wait_goal_sub))
@@ -56,10 +57,10 @@ int main(int argc, char** argv){
   msg.position.x = 1.0;
   msg.position.y = -1.5;
   msg.position.z = 0.0;
-  msg.orientation.x = 1.0;
+  msg.orientation.x = 0.0;
   msg.orientation.y = 0.0;
   msg.orientation.z = 0.0;
-  msg.orientation.w = 0.0;
+  msg.orientation.w = 1.0;
   goal_pub.publish(msg);
   ROS_INFO("Publishing goal for pickup location x:%f, y:%f",
     msg.position.x,
@@ -91,6 +92,7 @@ int main(int argc, char** argv){
   // Define a position for the robot to reach
   drop_goal.target_pose.pose.position.x = -0.5;
   drop_goal.target_pose.pose.position.y = 0.5;
+  drop_goal.target_pose.pose.orientation.w = 1.0;
 
    // Send the goal position and orientation for the robot to reach
   ROS_INFO("Sending goal for drop off location");
@@ -100,10 +102,10 @@ int main(int argc, char** argv){
   drop_msg.position.x = -0.5;
   drop_msg.position.y = 0.5;
   drop_msg.position.z = 0.0;
-  drop_msg.orientation.x = 1.0;
+  drop_msg.orientation.x = 0.0;
   drop_msg.orientation.y = 0.0;
   drop_msg.orientation.z = 0.0;
-  drop_msg.orientation.w = 0.0;
+  drop_msg.orientation.w = 1.0;
   goal_pub.publish(drop_msg);
   ROS_INFO("Publishing goal for drop off location x:%f, y:%f",
     msg.position.x,
