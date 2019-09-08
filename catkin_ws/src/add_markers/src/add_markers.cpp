@@ -9,8 +9,8 @@ const int DEBUGodom = 200;
 // /target topic from pick_objects
 // if fails to receive, uses hard coded goal
 // after each try, sleeps for 0.5 seconds.
-const int max_wait_goal = 5;
-const bool use_goal_pub = false;
+const int max_wait_goal = 100;
+const bool use_goal_pub = true;
 
 class AddMarkers
 {
@@ -161,11 +161,11 @@ void AddMarkers::odomCallback(const nav_msgs::Odometry::ConstPtr &msg) {
   newstatus = MarkerUndefined;
   //if (status == MarkerGoPick && close) status = MarkerPick;
   //else if (status == MarkerCarry && close) status = MarkerGoDrop;
-  if (status == MarkerGoPick && goal_order == GoalPickup && close) {
+  if (status == MarkerGoPick && close) {
     newstatus = MarkerPick;
     if (DEBUG) ROS_INFO("Status CHANGE %d.: newstatus:%d from status:%d", logc, newstatus, status);
   }
-  else if (status == MarkerCarry && goal_order == GoalDrop && close) {
+  else if (status == MarkerCarry && close) {
     newstatus = MarkerGoDrop;
     if (DEBUG) ROS_INFO("Status CHANGE %d.: newstatus:%d from status:%d", logc, newstatus, status);
   }
@@ -193,6 +193,8 @@ void AddMarkers::update() {
       wait_goal_pub++;
       wait_for_goal_pub = true;
       ros::Duration(0.5).sleep();
+    } else {
+      wait_for_goal_pub = false;
     }
     if (subscriber_exist && !wait_for_goal_pub) {
       if (status == MarkerPick) {

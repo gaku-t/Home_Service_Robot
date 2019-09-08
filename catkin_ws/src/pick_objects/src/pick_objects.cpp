@@ -15,7 +15,7 @@ int main(int argc, char** argv){
   ros::NodeHandle n;
 
   // Goal Publisher
-  ros::Publisher goal_pub = n.advertise<geometry_msgs::Pose>("/target",20);
+  ros::Publisher goal_pub = n.advertise<geometry_msgs::Pose>("/target",1);
 
   //tell the action client that we want to spin a thread by default
   MoveBaseClient ac("move_base", true);
