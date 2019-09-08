@@ -31,10 +31,9 @@ int main(int argc, char** argv){
   goal.target_pose.header.frame_id = "map";
   goal.target_pose.header.stamp = ros::Time::now();
 
-  // Define a position and orientation for the robot to reach
+  // Define a position for the robot to reach
   goal.target_pose.pose.position.x = 1.0;
   goal.target_pose.pose.position.y = -1.5;
-  goal.target_pose.pose.orientation.w = 1.0;
 
   while (goal_pub.getNumSubscribers() < 1 &&
     (wait_goal_sub <= max_wait_goal_sub))
@@ -60,12 +59,11 @@ int main(int argc, char** argv){
   msg.orientation.x = 0.0;
   msg.orientation.y = 0.0;
   msg.orientation.z = 0.0;
-  msg.orientation.w = 1.0;
+  msg.orientation.w = 0.0;
   goal_pub.publish(msg);
-  ROS_INFO("Publishing goal for pickup location x:%f, y:%f, w:%f",
+  ROS_INFO("Publishing goal for pickup location x:%f, y:%f",
     msg.position.x,
     msg.position.y,
-    msg.orientation.w
     );
 
 
@@ -90,10 +88,9 @@ int main(int argc, char** argv){
   drop_goal.target_pose.header.frame_id = "map";
   drop_goal.target_pose.header.stamp = ros::Time::now();
 
-  // Define a position and orientation for the robot to reach
+  // Define a position for the robot to reach
   drop_goal.target_pose.pose.position.x = -0.5;
   drop_goal.target_pose.pose.position.y = 0.5;
-  drop_goal.target_pose.pose.orientation.w = -0.5;
 
    // Send the goal position and orientation for the robot to reach
   ROS_INFO("Sending goal for drop off location");
@@ -106,12 +103,11 @@ int main(int argc, char** argv){
   drop_msg.orientation.x = 0.0;
   drop_msg.orientation.y = 0.0;
   drop_msg.orientation.z = 0.0;
-  drop_msg.orientation.w = -0.5;
+  drop_msg.orientation.w = 0.0;
   goal_pub.publish(drop_msg);
-  ROS_INFO("Publishing goal for drop off location x:%f, y:%f, w:%f",
+  ROS_INFO("Publishing goal for drop off location x:%f, y:%f",
     msg.position.x,
     msg.position.y,
-    msg.orientation.w
     );
 
   // Wait an infinite time for the results
