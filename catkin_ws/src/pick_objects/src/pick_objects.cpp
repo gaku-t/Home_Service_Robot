@@ -63,7 +63,7 @@ int main(int argc, char** argv){
   goal_pub.publish(msg);
   ROS_INFO("Publishing goal for pickup location x:%f, y:%f",
     msg.position.x,
-    msg.position.y,
+    msg.position.y
     );
 
 
@@ -107,7 +107,7 @@ int main(int argc, char** argv){
   goal_pub.publish(drop_msg);
   ROS_INFO("Publishing goal for drop off location x:%f, y:%f",
     msg.position.x,
-    msg.position.y,
+    msg.position.y
     );
 
   // Wait an infinite time for the results
