@@ -63,14 +63,14 @@ int main( int argc, char** argv )
     }
     marker_pub.publish(marker);
 
-    r.sleep(5);
+    ros::Duration(5.0).sleep();
     marker.action = visualization_msgs::Marker::DELETE;
-    r.sleep(5);
+    ros::Duration(5.0).sleep();
 
     marker.pose.position.x = -0.5;
     marker.pose.position.y = 0.5;
     marker.action = visualization_msgs::Marker::ADD;
-    r.sleep(5);
+    ros::Duration(5.0).sleep();
 
     r.sleep();
   }
